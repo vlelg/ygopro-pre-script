@@ -30,7 +30,7 @@ function c100227027.initial_effect(c)
 	c:RegisterEffect(e3)
 	--to deck
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(100227027,0))
+	e4:SetDescription(aux.Stringid(100227027,1))
 	e4:SetCategory(CATEGORY_TODECK)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_FREE_CHAIN)
@@ -80,7 +80,7 @@ function c100227027.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	c:RegisterFlagEffect(100227027,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
 end
 function c100227027.drfilter(c)
-	return c:GetLevel()==8 and c:IsDiscardable()
+	return c:GetLevel()==10 and c:IsDiscardable()
 end
 function c100227027.drcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c100227027.drfilter,tp,LOCATION_HAND,0,1,nil)
@@ -89,10 +89,10 @@ function c100227027.drcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	c100227027.cost(e,tp,eg,ep,ev,re,r,rp,1)
 end
 function c100227027.drtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsPlayerCanDraw(tp,2) end
+	if chk==0 then return Duel.IsPlayerCanDraw(tp,1) end
 	Duel.SetTargetPlayer(tp)
 	Duel.SetTargetParam(2)
-	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,2)
+	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
 end
 function c100227027.drop(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
